@@ -68,7 +68,6 @@ outputs = inputs: {
     in {
       default = pkgs.mkShellNoCC {
         allowSubstitutes = false; # Prevent a cache.nixos.org call every time
-
         packages = [
           (wrappers.foo {})
           (wrappers.bar {})

@@ -48,7 +48,6 @@ your wrappers without a full system rebuild. For example:
 
 pkgs.mkShellNoCC {
   allowSubstitutes = false; # Prevent a cache.nixos.org call every time
-
   packages = [
     (wrappers.foo {})
     (wrappers.bar {})
