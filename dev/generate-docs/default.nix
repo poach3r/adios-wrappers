@@ -1,6 +1,6 @@
 /*
   Usage:
-  nix run -f dev/generate-docs
+  nix run -f dev/generate-docs > docs/options.json
 */
 let
   flake = builtins.getFlake (toString ../../.);
