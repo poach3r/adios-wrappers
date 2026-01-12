@@ -2,8 +2,8 @@
   nix-instantiate --eval --strict --quiet --json dev/generate-docs.nix \
     | jq \
     | sed 's/^  },$/  },\n/' \
-    | sed 's/\\\n"/"/' \
-    | sed -r 's/(\\\n)+/ /g'
+    | sed 's/\\n"/"/' \
+    | sed -r 's/(\\n)+/ /g'
 */
 let
   inherit (builtins) mapAttrs getFlake;
