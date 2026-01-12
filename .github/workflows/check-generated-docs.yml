@@ -19,7 +19,7 @@ jobs:
 
       - name: Generate docs
         run: |
-          nix-instantiate --eval --strict --quiet --json dev/generate-docs.nix \
+          nix-instantiate --eval --strict --quiet --json dev/generate-docs/get-docs.nix \
             | jq \
             | sed 's/^  },$/  },\n/' \
             | sed 's/\\n"/"/' \
