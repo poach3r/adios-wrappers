@@ -1,9 +1,11 @@
-# nix eval -f docs/generate-docs.nix --json --offline \
-# | jq \
-# | rg -N --color=never --passthru '^  },$' -r "  },"\n \
-# | rg -N --color=never --passthru '(\\\n)"' -r '"' \
-# | rg --passthru --color=never -N '(\\\n)+' -r " " \
-# > docs.json
+/*
+  nix eval -f dev/generate-docs.nix --json --offline \
+  | jq \
+  | rg -N --color=never --passthru '^  },$' -r "  },"\n \
+  | rg -N --color=never --passthru '(\\\n)"' -r '"' \
+  | rg --passthru --color=never -N '(\\\n)+' -r " " \
+  > docs/options.json
+*/
 let
   inherit (builtins) mapAttrs getFlake;
   optionalAttrs = cond: attrs: if cond then attrs else {};
