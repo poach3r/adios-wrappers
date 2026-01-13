@@ -12,7 +12,7 @@ in
 
   options = {
     config = {
-      type = types.str;
+      type = types.string;
       description = ''
         Config to be injected into the wrapped package's `config.nu`.
 
@@ -21,7 +21,7 @@ in
 
         Disjoint with the `configFile` option.
       '';
-      mutatorType = types.str;
+      mutatorType = types.string;
       mergeFunc =
         { mutators, options }:
         let
@@ -62,9 +62,9 @@ in
         ```
         $env.HELLO = "test"
         $env.FOO = "3"
+        ```
 
         Disjoint with the `environmentFile` option.
-        ```
       '';
       mutatorType = types.attrs;
       mergeFunc = adios.lib.mergeFuncs.mergeAttrsRecursively;
@@ -87,13 +87,10 @@ in
     let
       inherit (inputs.nixpkgs.lib) concatStringsSep mapAttrsToList;
       inherit (inputs.nixpkgs.pkgs) writeText nushell;
-
       format =
         input: concatStringsSep "\n" (mapAttrsToList (name: value: "$env.${name} = \"${value}\"") input);
-
       generatedConfig = options.configFile or (writeText "config.nu" options.config);
       generatedEnv = options.environmentFile or (writeText "env.nu" (format options.environment));
-
     in
     assert !(options ? config && options ? configFile);
     assert !(options ? environment && options ? environmentFile);
