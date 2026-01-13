@@ -234,6 +234,10 @@
     "environmentFile": {
       "description": "`env.nu` file to be injected into the wrapped package. See the nushell documentaion on file sytax: https://www.nushell.sh/book/configuration.html Disjoint with the `environment` option.",
       "type": "union<path,derivation,string>"
+    },
+    "package": {
+      "description": "The nushell package to be wrapped.",
+      "type": "derivation"
     }
   },
 

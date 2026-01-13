@@ -80,13 +80,19 @@ in
         Disjoint with the `environment` option.
       '';
     };
+
+    package = {
+      type = types.derivation;
+      description = "The nushell package to be wrapped.";
+      defaultFunc = { inputs }: inputs.nixpkgs.pkgs.nushell;
+    };
   };
 
   impl =
     { options, inputs }:
     let
       inherit (inputs.nixpkgs.lib) concatStringsSep mapAttrsToList;
-      inherit (inputs.nixpkgs.pkgs) writeText nushell;
+      inherit (inputs.nixpkgs.pkgs) writeText;
       format =
         input: concatStringsSep "\n" (mapAttrsToList (name: value: "$env.${name} = \"${value}\"") input);
       generatedConfig = options.configFile or (writeText "config.nu" options.config);
@@ -95,7 +101,7 @@ in
     assert !(options ? config && options ? configFile);
     assert !(options ? environment && options ? environmentFile);
     inputs.mkWrapper {
-      package = nushell;
+      package = options.package;
       binaryPath = "$out/bin/nu";
       flags = [
         "--config ${generatedConfig}"
