@@ -126,8 +126,7 @@ in {
     let
       inherit (inputs.nixpkgs.lib) makeBinPath;
       inherit (inputs.nixpkgs) pkgs;
-      inherit (builtins) listToAttrs attrValues mapAttrs;
-      inherit (pkgs) writeText;
+      inherit (builtins) listToAttrs attrNames;
       generator = pkgs.formats.toml {};
     in
     assert !(options ? settings && options ? settingsFile);
@@ -160,13 +159,12 @@ in {
             generator.generate "init.lua" options.initLua
           else
             null;
-      } // listToAttrs (
-        attrValues (
-          mapAttrs (name: value: {
-            name = "$out/yazi/plugins/${name}";
-            inherit value;
-          }) options.plugins
-        )
+      }
+      // listToAttrs (
+        map (name: {
+          name = "$out/yazi/plugins/${name}";
+          value = options.plugins.${name};
+        }) (attrNames options.plugins)
       );
       wrapperArgs = ''
         --prefix PATH : ${makeBinPath options.extraPackages}
