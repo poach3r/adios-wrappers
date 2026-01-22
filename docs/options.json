@@ -419,6 +419,25 @@
     }
   },
 
+  "swayidle": {
+    "configContents": {
+      "description": "Settings to be injected into the wrapped package's `config` file. See the documentation for valid options: https://man.archlinux.org/man/swayidle.1 Disjoint with the `configFile` option.",
+      "type": "string"
+    },
+    "configFile": {
+      "description": "`config` file to be injected into the wrapped package. See the documentation for valid options: https://man.archlinux.org/man/swayidle.1 Disjoint with the `configContents` option.",
+      "type": "pathLike"
+    },
+    "package": {
+      "description": "The swayidle package to be wrapped.",
+      "type": "derivation"
+    },
+    "seatName": {
+      "description": "The seat name to be injected into the wrapped package's flags.",
+      "type": "string"
+    }
+  },
+
   "tealdeer": {
     "configFile": {
       "description": "`config.toml` file to be injected into the wrapped package. See the tealdeer documentation: https://tealdeer-rs.github.io/tealdeer/config.html Disjoint with the `settings` option.",
