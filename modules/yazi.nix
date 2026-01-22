@@ -156,9 +156,9 @@ in {
     { inputs, options }:
     let
       inherit (inputs.nixpkgs.lib) makeBinPath;
-      inherit (inputs.nixpkgs) pkgs;
+      inherit (inputs.nixpkgs.pkgs) formats;
       inherit (builtins) listToAttrs attrNames;
-      generator = pkgs.formats.toml {};
+      generator = formats.toml {};
     in
     assert !(options ? settings && options ? settingsFile);
     assert !(options ? keymap && options ? keymapFile);
