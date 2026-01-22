@@ -92,14 +92,14 @@ in {
         else if options ? settings then
           [ "--config=${writeText "config.jsonc" (toJSON options.settings)}" ]
         else
-          [ ];
+          [];
       styleFlag =
         if options ? cssFile then
           [ "--style=${options.cssFile}" ]
         else if options ? barStyle then
           [ "--style=${writeText "style.css" options.barStyle}" ]
         else
-          [ ];
+          [];
     in
     inputs.mkWrapper {
       name = "waybar";
