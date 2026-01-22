@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     adios.url = "github:llakala/adios/providers-and-consumers"; # My personal branch, adding callable impls and mutators
+    sprinkles.url = "git+https://codeberg.org/poacher/sprinkles/";
   };
 
   outputs =
@@ -23,7 +24,11 @@
           nixfmt = pkgs.callPackage ./dev/nixfmt.nix {};
         in {
           default = pkgs.mkShell {
-            packages = [ nixfmt ];
+            packages = [
+              nixfmt
+              pkgs.nixd
+              pkgs.jq
+            ];
           };
         }
       );
