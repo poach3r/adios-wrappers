@@ -62,7 +62,7 @@ in {
           if options ? themeFile then
             options.themeFile
           else if options ? themeConfig then
-            (writeText "theme" (toJSON options.themeConfig))
+            writeText "theme" (toJSON options.themeConfig)
           else
             null;
       };

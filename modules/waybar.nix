@@ -97,7 +97,7 @@ in {
         if options ? cssFile then
           [ "--style=${options.cssFile}" ]
         else if options ? barStyle then
-          [ "--style=${(writeText "style.css" options.barStyle)}" ]
+          [ "--style=${writeText "style.css" options.barStyle}" ]
         else
           [ ];
     in
