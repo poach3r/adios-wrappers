@@ -8,7 +8,6 @@ inputs = {
   };
   adios-wrappers = {
     url = "github:llakala/adios-wrappers";
-    inputs.nixpkgs.follows = "nixpkgs";
     inputs.adios.follows = "adios";
   };
 };

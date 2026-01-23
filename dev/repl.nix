@@ -6,8 +6,9 @@
 # nix repl --expr '{ wrappers = import ./dev/repl.nix; }'
 let
   flake = builtins.getFlake (toString ../.);
+  sources = import ./npins;
   inherit (flake) inputs outputs;
-  pkgs = import inputs.nixpkgs {};
+  pkgs = import sources.nixpkgs {};
   adios = inputs.adios.adios;
 
   root = {
