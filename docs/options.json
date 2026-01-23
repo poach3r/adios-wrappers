@@ -419,6 +419,31 @@
     }
   },
 
+  "swaybg": {
+    "backgroundImage": {
+      "description": "Path to the background image to be displayed by the wrapped package.",
+      "type": "pathLike"
+    },
+    "color": {
+      "description": "Hex formatted background color to be displayed by the wrapped package.",
+      "example": "ffffff",
+      "type": "string"
+    },
+    "outputName": {
+      "description": "Name of the output to be used by the wrapped package.",
+      "example": "eDP-1",
+      "type": "string"
+    },
+    "package": {
+      "description": "The swaybg package to be wrapped.",
+      "type": "derivation"
+    },
+    "scalingMode": {
+      "description": "Mode to determine how the wrapped package scales images. See the documentation for valid modes: https://man.archlinux.org/man/extra/swaybg/swaybg.1.en#OPTIONS",
+      "type": "string"
+    }
+  },
+
   "swayidle": {
     "configContents": {
       "description": "Settings to be injected into the wrapped package's `config` file. See the documentation for valid options: https://man.archlinux.org/man/swayidle.1 Disjoint with the `configFile` option.",
